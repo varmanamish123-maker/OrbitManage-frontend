@@ -1,7 +1,7 @@
 // All REST API calls replaced with dummy static data
 const DEFAULT_PORTFOLIO_ID = 1;
 const API_BASE = import.meta.env.VITE_API_URL;
-const YAHOO_BASE_URL = "http://localhost:8081/yahoo";
+const YAHOO_BASE_URL = `${API_BASE}/yahoo`;
 // -------- UI MAPPERS (Summary) --------
 const fmtMoney = (n) =>
   `₹${Number(n).toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
@@ -228,7 +228,7 @@ function mapRawHoldingsToUIRows(raw, priceMap = {}) {
     const totalQty = buys.reduce((s, b) => s + (b.quantity ?? 0), 0);
     const totalCost = buys.reduce(
       (s, b) => s + (b.quantity ?? 0) * (b.avgBuyPrice ?? 0),
-      0
+      0,
     );
 
     const avgPrice = totalQty > 0 ? totalCost / totalQty : 0;
@@ -617,7 +617,12 @@ export async function getMostActive() {
 
 export async function getStockNews(ticker) {
   const res = await fetch(`${YAHOO_BASE_URL}/news/${ticker}`);
-  console.log("Fetching news for", ticker, "from", `${YAHOO_BASE_URL}/news/${ticker}`);
+  console.log(
+    "Fetching news for",
+    ticker,
+    "from",
+    `${YAHOO_BASE_URL}/news/${ticker}`,
+  );
   if (!res.ok) throw new Error(`Failed: ${res.status}`);
   return await res.json();
 }
