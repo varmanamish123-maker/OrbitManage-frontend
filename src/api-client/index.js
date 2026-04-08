@@ -2,7 +2,7 @@
 const DEFAULT_PORTFOLIO_ID = 1;
 // const API_BASE = import.meta.env.VITE_API_URL;
 //const API_BASE = "http://localhost:8081";
-const API_BASE = "https://orbitmanage-backend-production.up.railway.app";
+const API_BASE = "https://orbitmanage-backend-production-eb96.up.railway.app";
 const YAHOO_BASE_URL = `${API_BASE}/yahoo`;
 // -------- UI MAPPERS (Summary) --------
 const fmtMoney = (n) =>
